@@ -1,4 +1,3 @@
 .idea
 solr-*
-application/dist
 application/node_modules

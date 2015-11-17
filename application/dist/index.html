@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr" ng-app="knowledge">
+<head>
+    <meta charset="utf-8">
+    <title>Knowledge base</title>
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/application.css">
+    <!-- endinject -->
+
+    <!-- inject:js -->
+    <script src="/js/application.doc.min.js"></script>
+    <script src="/js/application.min.js"></script>
+    <!-- endinject -->
+
+</head>
+<body>
+
+    <header class="navbar navbar-inverse navbar-fixed-top hidden-print" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a title="Home" href="/" class="navbar-brand">
+                    <img alt="Neo4j" src="./assets/images/logo.png">
+                </a>
+            </div>
+
+            <nav class="collapse navbar-collapse" ng-controller="MenuCtrl">
+                <!--<ul class="nav navbar-nav" >
+                    <li ng-class="{ active: isActive('/graph')}"><a href="#/graph">Graphe par entreprise</a></li>
+                </ul>-->
+
+                <form class="form-search pull-right form-inline" role="search" ng-controller="IndexCtrl" ng-submit="searchFct()">
+                    <div class="form-group">
+                        <label for="search">Recherche</label>
+                        <div class="input-append">
+                            <input type="text" placeholder="Search" name="search" ng-model="search.text" id="search" >
+                            <button class="btn" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </nav>
+
+        </div>
+    </header>
+
+    <main class="container-fluid" ng-view>
+
+
+    </main>
+
+
+</body>
+</html>

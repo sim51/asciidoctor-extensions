@@ -1,0 +1,54 @@
+<section class="row-fluid">
+    <header>
+        <h1 ng-hide="{{query.length > 0}}">Welcome</h1>
+        <h1 ng-show="{{query.length > 0}}">Found {{solr.response.numFound}} result(s) for '{{query}}'</h1>
+    </header>
+
+    <section id="facets" class="col-md-3">
+        <div ng-repeat="(name, facet) in solr.facet_counts.facet_fields">
+            <div ng-hide="facet.length == 0">
+                <h3>{{name}}</h3>
+                <ul>
+                    <li ng-repeat="item in facet track by $index" ng-if="$even" ng-hide="isFacetNotSelected(name, item)">
+                        <a class="selected" ng-click="removeFacet(name, item)">
+                            {{item}} ({{facet[$index+1]}})
+                            &nbsp;&nbsp;<i class="fa fa-times"></i>
+                        </a>
+                    </li>
+                    <li ng-repeat="item in facet track by $index" ng-if="$even" ng-show="isFacetNotSelected(name, item)">
+                        <a  ng-click="addFacet(name, item)">{{item}} ({{facet[$index+1]}})</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="results" class="col-md-offset-3 col-md-9">
+        <div class="result" ng-repeat="result in solr.response.docs track by $index">
+            <h3>
+                <a target="_self" href="{{result.url}}" title="{{result.doctitle}}">
+                    {{result.doctitle}}
+                </a>
+            </h3>
+            <ul class="list-inline">
+                <li ng-show="result['lang']"><strong>Lang : </strong> {{result['lang']}}</li>
+                <li ng-show="result['customer']"><strong>Customer : </strong>{{result['customer']}}</li>
+                <li ng-show="result['project']"><strong>Project : </strong>{{result['project']}}</li>
+                <li ng-show="result['keywords']"><strong>Tags : </strong>{{result['keywords']}}</li>
+                <li ng-show="result['neo4j-version']"><strong>Neo4j version :</strong>{{result['neo4j-version']}}</li>
+            </ul>
+            <div ng-show="result['description']">{{result['description']}}</div>
+            <hr ng-if="$index < solr.response.docs.length" />
+        </div>
+
+
+    </section>
+
+    <footer class="pager">
+        <a ng-if="page > 1" ng-click="getPage(page-1)"> <-[:PREVIOUS]</a>
+        &nbsp;
+        <a ng-if="(solr.response.numFound - (row*page)) > 0" ng-click="getPage(page+1)">[:NEXT]-></a>
+    </footer>
+
+</section>
