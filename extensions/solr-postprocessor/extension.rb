@@ -5,7 +5,7 @@ require 'rsolr'
 class SolrPostprocessor < Asciidoctor::Extensions::Postprocessor
   def process document, output
 
-    solr_default_fields = ['doctitle','description','tag','author','lang']
+    solr_default_fields = ['doctitle','description','tags','author','lang']
     solr_fields = []
     if (document.attr? 'solr-attrs')
       solr_fields = (document.attr 'solr-attrs').split(";")
