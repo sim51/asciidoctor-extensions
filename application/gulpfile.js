@@ -87,7 +87,6 @@ gulp.task('js', function () {
         .pipe(sourcemaps.init())
         .pipe(concat(application.name + '.doc.min.js'))
         .pipe(uglify())
-        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(application.js.dest));
     return stream;
 });
