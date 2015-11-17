@@ -19,8 +19,6 @@ class SolrPostprocessor < Asciidoctor::Extensions::Postprocessor
     object = {}
     object['id'] = document.attr 'docfile'
 
-    puts document.attr('application-path')
-
     # Url of output file
     if (document.attr? 'application-path')
       url = document.attr('outfile')
