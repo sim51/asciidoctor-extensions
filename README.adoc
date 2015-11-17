@@ -72,7 +72,7 @@ $>asciidoctor \
 
 This is an example fof apache configuration
 
-[source,shell}
+[source,shell]
 ----
 <VirtualHost *:80>
   ServerName knowledge.local
