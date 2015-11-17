@@ -564,7 +564,7 @@ module Slim::Helpers
   def include_js(file)
     result = ''
     if (attr? 'application-url')
-      result = '<script src="' + file + '">'
+      result = '<script src="' + file + '"></script>'
     else
       path = get_file_path file
       result = '<script type=\'text/javascript\'>'
