@@ -1,0 +1,40 @@
+html {
+
+  body {
+
+    main.container-fluid {
+      margin-top: @navbar-height;
+      padding: 0px;
+
+      header {
+        margin-top: 0px;
+        padding: 20px;
+        background-image: url("../assets/images/pattern-neo4j.png");
+        background-repeat: no-repeat;
+        background-color: @primary;
+
+        h1 {
+          color: #FFFFFF;
+          text-align: center;
+        }
+      }
+
+      h1, h2, h3, h4, h5 {
+        color: @primary;
+      }
+    }
+
+    @media print {
+      main {
+        margin-top: 0px !important;
+      }
+    }
+  }
+}
+
+:target:before {
+  content:"";
+  display:block;
+  height:170px;
+  margin:-170px 0 0; /* negative fixed header height */
+}

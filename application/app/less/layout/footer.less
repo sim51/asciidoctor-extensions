@@ -1,0 +1,21 @@
+body {
+
+  footer{
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    height: @footer-height;
+    width: 100%;
+    background-color: @footer-color-bg;
+    opacity: 0.8;
+  }
+
+  @media print {
+    footer{
+      position: relative;
+      margin-top: 50px;
+      opacity: 0;
+    }
+  }
+  
+}

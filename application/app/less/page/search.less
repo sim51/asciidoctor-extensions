@@ -1,0 +1,46 @@
+html {
+  body {
+    main.container-fluid {
+      section {
+        header {
+          z-index: 99;
+          position: fixed;
+          top: @navbar-height;
+          margin-bottom: 20px;
+          padding: 0 20px;
+          height: 100px;
+          width:100%;
+          text-align: center;
+          form {
+            h1 {
+              margin: 0px;
+            }
+            input {
+              border-radius: 30px;
+              padding: 4px 14px 4px 14px;
+              border-width: 1px;
+              border: 1px solid @grey;
+              margin-left: 20px;
+            }
+          }
+        }
+
+        #results {
+          z-index: 1;
+          margin-top : 100px;
+          h3 {
+            margin-bottom: 0;
+          }
+        }
+
+        #facets {
+          position: fixed;
+          top: calc(@navbar-height + 100px);
+          a.selected {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
