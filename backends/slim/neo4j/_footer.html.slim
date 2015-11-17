@@ -1,0 +1,49 @@
+footer
+  #footer-text
+    '&nbsp;|&nbsp;
+    - if attr? :customer
+      strong Customer:&nbsp;
+      span#customer #{(attr 'customer')}
+      '&nbsp;|&nbsp;
+    - if attr? :project
+      strong Project:&nbsp;
+      span#project #{(attr 'project')}
+      '&nbsp;|&nbsp;
+    - if attr? :'neo4j-version'
+      strong Neo4j:&nbsp;
+      span#neo4j #{(attr 'neo4j-version')}
+      '&nbsp;|&nbsp;
+    - if attr? :tags
+      strong Tags:&nbsp;
+      span#tags #{(attr 'tags')}
+      '&nbsp;|&nbsp;
+    '&nbsp;|&nbsp;
+    - if attr? :revnumber
+      '&nbsp;|&nbsp;
+      |#{attr 'version-label'} #{attr :revnumber}
+      '&nbsp;|&nbsp;
+    strong Updated:&nbsp;
+    time itemprop="dateModified" datetime="#{attr :docdatetime}" #{attr :docdatetime}
+    '&nbsp;|&nbsp;
+    - if [:author, :revnumber, :revdate, :revremark].any? { |a| attr? a }
+      strong Author:&nbsp;
+      - if attr? :author
+        span.author#author =(attr :author)
+        '&nbsp;
+        - if attr? :email
+          span.email#email
+            =sub_macros(attr :email)
+          '&nbsp;|&nbsp;
+        - if (authorcount = (attr :authorcount).to_i) > 1
+          - (2..authorcount).each do |idx|
+            span.author temprop="author" id="author#{idx}" =(attr "author_#{idx}")
+            - if attr? "email_#{idx}"
+               span.email id="email#{idx}" =sub_macros(attr "email_#{idx}")
+      - if attr? :revnumber
+        span#revnumber #{((attr 'version-label') || '').downcase} #{attr :revnumber}#{',' if attr? :revdate}
+        '&nbsp;|&nbsp;
+      - if attr? :revdate
+        span#revdate =attr :revdate
+      - if attr? :revremark
+        '&nbsp;|&nbsp;
+        span#revremark =(attr :revremark)

@@ -1,0 +1,71 @@
+= Asciidoctor extension
+
+== Backend
+
+There are two customs backend :
+
+ * *neo4j :* to make HTML report with Neo4j design
+ * *revealjs :* to make a presentation with reveal.js
+
+[source,shell]
+----
+$> # Generic command
+$>asciidoctor -T ASCIIDOCTOR_EXTENSION_HOME/backends/slim/BACKEND_NAME ASCIIDOC_FILE
+$>
+$> # Example
+$>asciidoctor -T /usr/local/asciidoctor_extension/backends/slim/neo4j index.adoc
+----
+
+NOTE: For the neo4j one, all files are embedded into the document, so it's easy to share with someone, just send the generated html file.
+
+== Extension
+
+Before to use this extension, you have to install `rsolr` :
+
+[source,shell]
+----
+$>sudo gem install rsolr
+$> # OR this if you have multiple ruby env.
+$>sudo gem2.0 install rsolr
+----
+
+This extension permit to index a document into a SolR server.
+
+Configuration
+
+ * *solr-url :* Url of the solR server like `http://localhost:8983/solr/`
+ * *solr-attrs :* List of asciidoctor attribute to index separate by a `;` like `neo4j-version;doctitle;author;lang;description`
+
+[source,shell]
+----
+$> # Example
+$>asciidoctor \
+    -T /usr/local/asciidoctor_extension/backends/slim/neo4j \
+    -r /usr/local/asciidoctor_extension/extensions/solr-postprocessor.rb \
+    -a solr-url="http://localhost:8983/solr/" \
+    -a solr-attrs="neo4j-version;doctitle;author;lang;description" \
+    index.adoc
+----
+
+== Application
+
+This just a frontend application that communicate with a SolR server and permit to make some search.
+
+You can configure the application url when generating files with asciidoctor.
+This permit to avoid to embedded all css/js/image into html file.
+
+Also you have to configure `application-path` with the apache root directory.
+This permit to calculate the file url, and to index it.
+
+[source,shell]
+----
+$> # Example
+$>asciidoctor \
+    -T /usr/local/asciidoctor_extension/backends/slim/neo4j \
+    -a application-url="http://knowledge.local/" \
+    -a application-path="/home/bsimard/" \
+    -r /usr/local/asciidoctor_extension/extensions/solr-postprocessor.rb \
+    -a solr-url="http://localhost:8983/solr/adoc" \
+    -a solr-attrs="neo4j-version;customer;project" \
+    index.adoc
+----

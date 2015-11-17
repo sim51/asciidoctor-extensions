@@ -1,0 +1,12 @@
+/ AsciiDoc leaves an empty header div even if there's no doctitle
+header style=(include_background_img '/assets/images/pattern-right-100.png')
+  - if has_header?
+    - unless notitle
+      h1 itemprop="name"
+        - if (attr? :customer)
+          =(attr 'customer') + ' / '
+        - if (attr? :project)
+          =(attr 'project') + ' / '
+        =header.title
+  - if (attr? :toc) && (attr? 'toc-placement', 'auto')
+    include _toc.html
