@@ -5,7 +5,7 @@
       a.anchor href="##{id}"
       =section_title
     - elsif id && (document.attr? :sectlinks)
-      a.link href="##{id}" =section_title
+      a.link href="#{id}" =section_title
     - else
       =section_title
   - if section_level == 1

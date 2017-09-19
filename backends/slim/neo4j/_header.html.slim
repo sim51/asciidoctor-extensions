@@ -5,8 +5,6 @@ header style=(include_background_img '/assets/images/pattern-neo4j.png')
       h1 itemprop="name"
         - if (attr? :customer)
           =(attr 'customer') + ' / '
-        - if (attr? :project)
-          =(attr 'project') + ' / '
         =header.title
   - if (attr? :toc) && (attr? 'toc-placement', 'auto')
     include _toc.html
