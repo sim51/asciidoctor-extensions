@@ -2,6 +2,7 @@
 @bootstrap-path:             "../../node_modules/bootstrap";
 @bootstrap-less-path:        "@{bootstrap-path}/less";
 
+@import (inline) "./asciidoctor.css";
 
 // variables
 @import "@{bootstrap-less-path}/variables.less";
@@ -65,3 +66,11 @@
 // Pages
 @import "./page/search.less";
 @import "./page/article.less";
+
+.olist .olist, .olist .ulist, .ulist .olist, .ulist .ulist, ol dd, ol>li p, ul dd, ul>li p {
+    margin-bottom: 0;
+}
+
+blockquote, dt, p, span.alt, td.content {
+    font-size:1.0em
+}

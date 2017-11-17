@@ -12,9 +12,11 @@ html lang=(attr :lang, '' unless attr? :nolang) ng-app="knowledge"
     = html_meta_if 'keywords', (attr :tags)
     title
       =((doctitle sanitize: true) || (attr 'untitled-label'))
+    link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet"
     = include_css('/css/application.css')
     - unless (docinfo_content = docinfo).empty?
-      =docinfo_content
+      = docinfo_content
+
   body(
     id=id
     class=[(attr :doctype), ("#{attr 'toc-class'} toc-#{attr 'toc-position', 'left'}" if (attr? 'toc-class') && (attr? :toc) && (attr? 'toc-placement', 'auto'))]
